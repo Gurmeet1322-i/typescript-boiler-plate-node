@@ -1,12 +1,12 @@
 import EXPRESS from 'express';
 import { connectDatabase } from './db.startup';
-const APP = EXPRESS();
+export const APP = EXPRESS();
 
 /********************************
  ***** Server Configuration *****
  ********************************/
 APP.use(EXPRESS.json());
-APP.use(EXPRESS.urlencoded());
+// APP.use(EXPRESS.urlencoded());
 APP.use((req, res, next) => {
     console.log(`Api hitted ${req.url} method ${req.method}`);
     next();
@@ -22,12 +22,9 @@ APP.all('/*', (request, response, next) => {
     response.header('Access-Control-Max-Age');
     next();
 });
-
 APP.use('/public', EXPRESS.static('../public'));
-connectDatabase().then(res => {
-    console.log('Database connected succss!');
-}).catch(err => {
-    console.log('Error: ', err);
+connectDatabase().then(res=>{
+console.log(`Database connected...`);
+}).catch(err=>{
+    throw err;
 })
-
-export = APP;

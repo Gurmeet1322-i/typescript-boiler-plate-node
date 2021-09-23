@@ -22,7 +22,7 @@ APP.all('/*', (request, response, next) => {
     response.header('Access-Control-Max-Age');
     next();
 });
-APP.use('/public', EXPRESS.static('../public'));
+APP.use('/public', EXPRESS.static('../../public'));
 connectDatabase().then(res=>{
 console.log(`Database connected...`);
 }).catch(err=>{

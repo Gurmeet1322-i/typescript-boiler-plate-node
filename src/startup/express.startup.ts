@@ -1,4 +1,5 @@
 import EXPRESS from 'express';
+import { SERVICES } from '../services';
 import { connectDatabase } from './db.startup';
 export const APP = EXPRESS();
 
@@ -23,8 +24,13 @@ APP.all('/*', (request, response, next) => {
     next();
 });
 APP.use('/public', EXPRESS.static('../../public'));
-connectDatabase().then(res=>{
-console.log(`Database connected...`);
-}).catch(err=>{
+
+/**
+ * function call for connect database
+ */
+connectDatabase().then(res => {
+    SERVICES.bootstrapService.createAdmin();
+    console.log(`Database connected...`);
+}).catch(err => {
     throw err;
 })

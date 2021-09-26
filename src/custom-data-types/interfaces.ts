@@ -14,3 +14,10 @@ export interface Admin{
     email:string,
     password:string
 }
+
+export interface Route{
+    method:string,
+    path:string,
+    joiSchemaForSwagger:any,
+    handler:any
+}

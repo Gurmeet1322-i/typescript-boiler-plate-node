@@ -1,6 +1,8 @@
 import { DATABASE } from './db.setup'
-import { SERVRE } from './servre.setup'
+import { SERVER } from './servre.setup'
+import { swaggerInfo } from './swagger';
 export const CONFIG = {
-    SERVER: SERVRE,
-    DB: DATABASE
+    SERVER: SERVER,
+    DB: DATABASE,
+    SWAGGER:swaggerInfo
 };
